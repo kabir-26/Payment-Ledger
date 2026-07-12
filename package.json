@@ -1,0 +1,15 @@
+{
+  "name": "mini-payment-ledger",
+  "private": true,
+  "scripts": {
+    "install:all": "npm --prefix apps/web ci && python -m pip install -r apps/api/requirements-dev.txt",
+    "dev:web": "npm --prefix apps/web run dev",
+    "dev:api": "python -m uvicorn app.main:app --reload --app-dir apps/api",
+    "build": "npm --prefix apps/web run build",
+    "lint": "npm --prefix apps/web run lint && ruff check apps/api",
+    "typecheck": "npm --prefix apps/web run typecheck && mypy apps/api/app",
+    "test": "npm --prefix apps/web test -- --runInBand && pytest apps/api/tests",
+    "db:migrate": "python -m alembic -c apps/api/alembic.ini upgrade head",
+    "db:seed": "python apps/api/scripts/seed.py"
+  }
+}

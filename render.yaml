@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: mini-ledger-api
+    runtime: docker
+    dockerfilePath: ./apps/api/Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false
+  - type: web
+    name: mini-ledger-ui
+    runtime: static
+    rootDir: apps/web
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_GRAPHQL_URL
+        sync: false
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
