@@ -2,6 +2,7 @@ services:
   - type: web
     name: mini-ledger-api
     runtime: docker
+    plan: free
     dockerfilePath: ./apps/api/Dockerfile
     healthCheckPath: /health
     envVars:

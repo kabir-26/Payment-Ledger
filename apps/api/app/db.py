@@ -11,6 +11,10 @@ class Base(DeclarativeBase):
 
 
 database_url = get_settings().database_url
+# Hosted PostgreSQL providers commonly return the generic scheme. Explicitly
+# select psycopg 3, which is the driver installed by this project.
+if database_url.startswith("postgresql://"):
+    database_url = database_url.replace("postgresql://", "postgresql+psycopg://", 1)
 engine = create_engine(
     database_url,
     pool_pre_ping=True,

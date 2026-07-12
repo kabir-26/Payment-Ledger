@@ -79,6 +79,10 @@ Quality checks:
 
 Hosted UI: **not deployed yet**. A live URL requires access to the owner's hosting account.
 
+For a permanent free demo, use Neon Free for PostgreSQL and Render Free for the
+API and UI. Do not use Render's free PostgreSQL for this project because it
+expires after 30 days.
+
 The included `render.yaml` deploys the API, PostgreSQL-backed configuration, and static UI on Render. After the repository is pushed to GitHub:
 
 1. Create a Render Blueprint from the repository.
